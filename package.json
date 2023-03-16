@@ -1,0 +1,11 @@
+{
+  "name": "pre-entrega-1",
+  "version": "1.0.0",
+  "main": "codigo.js",
+  "scripts": {
+    "build-sass": "node-sass --include-path scss scss/style.scss css/style.css -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
