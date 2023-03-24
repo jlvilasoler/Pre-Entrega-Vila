@@ -1,6 +1,7 @@
 
+
 class Producto{
-    constructor(idProveedor,seccion,id,nombreDeProducto,costoConIva,cantidad,plazoDePago){
+    constructor(idProveedor,seccion,id,nombreDeProducto,costoConIva,cantidad,plazoDePago,precioDeVenta){
         this.idProveedor = idProveedor;
         this.seccion = seccion;
         this.id = id;
@@ -8,13 +9,13 @@ class Producto{
         this.costoConIva = costoConIva;
         this.cantidad = cantidad;
         this.plazoDePago = plazoDePago;
-        this.precioDeVenta = this.agregarGanancia();
     }
     costoSinIva(){
         this.costoConIva = this.costoConIva / 1.22;
 }
     agregarGanancia() {
-        this.costoConIva = this.costoConIva * 1.4;
+        this.costoConIva *= 1.4;
+        return this.costoConIva;
     }
 
 }
@@ -44,12 +45,7 @@ function agregarProductos(){
     nuevoProd.costoSinIva();
     productos.push(nuevoProd);
 
-    nuevoProd.agregarGanancia();
-    productos[productos.length - 1].precioDeVenta = nuevoProd.costoConIva; // actualizar el precio de venta del último producto agregado
-    }
-
-agregarProductos();
-console.log(productos);
+}
 
 
 //ORDENAR EL LISTADO DE PRODUCTOS QUE TENGO EN LA LISTA
