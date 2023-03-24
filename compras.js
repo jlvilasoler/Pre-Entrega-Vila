@@ -1,7 +1,6 @@
 
-
 class Producto{
-    constructor(idProveedor,seccion,id,nombreDeProducto,costoConIva,cantidad,plazoDePago,precioDeVenta){
+    constructor(idProveedor,seccion,id,nombreDeProducto,costoConIva,cantidad,plazoDePago){
         this.idProveedor = idProveedor;
         this.seccion = seccion;
         this.id = id;
@@ -9,12 +8,12 @@ class Producto{
         this.costoConIva = costoConIva;
         this.cantidad = cantidad;
         this.plazoDePago = plazoDePago;
-        this.precioDeVenta = precioDeVenta;
+        this.precioDeVenta = this.agregarGanancia();
     }
     costoSinIva(){
         this.costoConIva = this.costoConIva / 1.22;
 }
-    agregarGanancia(){
+    agregarGanancia() {
         this.costoConIva = this.costoConIva * 1.4;
     }
 
@@ -45,9 +44,9 @@ function agregarProductos(){
     nuevoProd.costoSinIva();
     productos.push(nuevoProd);
 
-    nuevoProd.agregarGanancia;
-    productos.push(nuevoProd);
-}
+    nuevoProd.agregarGanancia();
+    productos[productos.length - 1].precioDeVenta = nuevoProd.costoConIva; // actualizar el precio de venta del último producto agregado
+    }
 
 agregarProductos();
 console.log(productos);
@@ -55,6 +54,4 @@ console.log(productos);
 
 //ORDENAR EL LISTADO DE PRODUCTOS QUE TENGO EN LA LISTA
 for(const prod of productos){
-    console.log(prod.idProveedor + " " + prod.seccion + " " + prod.id + " " + prod.nombreDeProducto + " " + prod.costoConIva + " " + prod.cantidad + " " + prod.plazoDePago + " " +  prod.precioDeVenta);
-}
-
+    console.log(prod.idProveedor + " " + prod.seccion + " " + prod.id + " " + prod.nombreDeProducto + " " + prod.costoConIva + " " + prod.cantidad + " " + prod.plazoDePago + " " +  prod.precioDeVenta);}
