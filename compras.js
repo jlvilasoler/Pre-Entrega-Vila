@@ -15,7 +15,7 @@ class Producto{
         this.costoConIva = this.costoConIva / 1.22;
 }
     agregarGanancia(){
-        this.costoConIva = this.costoConIvan * 1.4;
+        this.costoConIva = this.costoConIva * 1.4;
     }
 
 }
