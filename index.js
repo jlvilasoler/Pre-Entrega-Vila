@@ -39,9 +39,9 @@ while (mensaje == "s" || mensaje == "S") {
             incrementarTotal(120);
             break;
         case "5":
-                alert("Whisky Johnnie Walker - Etiqueta negra (1l) .... $ 4000,00 \nAGREGADO AL CARRITO");
-                incrementarTotal(4000);
-                break;
+            alert("Whisky Johnnie Walker - Etiqueta negra (1l) .... $ 4000,00 \nAGREGADO AL CARRITO");
+            incrementarTotal(4000);
+            break;
         default:
             alert("Código de producto inexistente");
             break;
@@ -152,4 +152,7 @@ function ingresarMedioDePago(){
     let codigoMedioDePago = prompt("Elije el medio de pago que deseas utilizar:\n1-TARJETA DE DEBITO\n2-TARJETA DE CREDITO");
     return codigoMedioDePago;
 }
+
+
+//////////////////
 

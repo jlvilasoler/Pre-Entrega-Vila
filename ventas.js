@@ -1,47 +1,62 @@
-/*
-
-//FUNCION INGRESA PRECIO CON IVA Y NOS DA EL PRECIO SIN IVA
-let precioSinIva = function(precioSinIva) {
-    return precioSinIva / 1.22;
-}
-console.log("El total sin iva es: ")
-console.log(precioSinIva(parseFloat(prompt("Ingresa Precio con Iva del Producto 1")))); //MENU PARA INDICAR EL PRECIO CON IVA DE UN PRODUCTO
+let descuento = 0; // Descuento del 0% (por defecto)
+let cupones = {
+    "FIDELITY": 0.1, // Descuento del 10%
+    "VIP": 0.3 // Descuento del 30%
+};
 
 
-
-function Producto(tipoOperacion, fecha, categoria, seccion,idProveedor, nombreProveedor,id, nombreDeProducto, cantidad, costoSinIva, costoConIva, precioSinIva, precioConIva){
-    this.tipoOperacion=tipoOperacion;
-    this.fecha=fecha;
-    this.categoria=categoria;  
-    this.seccion=seccion;    
-    this.idProveedor=idProveedor; 
-    this.nombreProveedor=nombreProveedor; 
-    this.id=id;
-    this.nombreDeProducto=nombreDeProducto;
-    this.cantidad=cantidad;
-    this.costoSinIva=costoSinIva;
-    this.costoConIva=costoConIva;
-    this.precioSinIva=precioSinIva;
-    this.precioConIva=precioConIva;
-    //mostrar producto
-    this.mostrarProducto = function(){
-        alert(this.tipoOperacion+","+this.fecha+","+this.categoria+","+this.seccion+","+this.idProveedor+","+this.id+","+this.nombreDeProducto+","+this.cantidad+","+this.costoSinIva+","+this.costoConIva+","+this.precioSinIva+","+precioConIva);
+class Producto{
+    constructor(idProveedor,seccion,id,nombreDeProducto,costoConIva,cantidad){
+        this.idProveedor = idProveedor;
+        this.seccion = seccion;
+        this.id = id;
+        this.nombreDeProducto = nombreDeProducto;
+        this.costoConIva = costoConIva;
+        this.cantidad = cantidad;
     }
+    costoSinIva(){
+        this.costoSinIva = this.costoConIva / 1.22;
+    }
+    precioVentaSinIva(){
+        this.precioVentaSinIva = this.costoConIva * 1.25; //YA TIENE EL MARGEN INCLUIDO DE 25%
+}
+    precioVentaConIva(){
+    this.precioVentaConIva = this.precioVentaSinIva * 1.22;
+}
+precioVentaConIvaConDescuento(){
+    this.precioVentaConIvaConDescuento = this.precioVentaConIva  * descuento{if("")};
+}
 }
 
-const producto1 = new Producto("COMPRA",12032023,"BEBIDAS","REFRESCOS",99912,"MDEO REF",60120,"COCA COLA LIGHT 600ML",200,80.6234,98.36,120);
-const producto2 = new Producto("COMPRA",10022023,"BEBIDAS","REFRESCOS",99913,"PEPSICO",60121,"POMELO PASO DE LOS TOROS BT.500ML",200,67.1862,81.97,100);
-const producto3 = new Producto("COMPRA",08022023,"BEBIDAS","REFRESCOS",99913,"PEPSICO",60122,"AGUA SALUS CON GAS BT 600ML",50,47,57.38,57.38,70);
-const producto4 = new Producto("COMPRA",08022023,"BEBIDAS","REFRESCOS",99913,"PEPSICO",60123,"COCA COLA BT 600ML",250,80.6234,98.36,120);
-const producto5 = new Producto("COMPRA",03012023,"BEBIDAS","REFRESCOS",99920,"ALCOHOLES UY",60124,"WHISKY JOHNNIE WALKER-ETIQUETA NEGRA 1L",40,2687,3278,4000);
+const producto1 = new Producto(9991,"BEBIDAS",60001,"COCA COLA LIGHT 600ML",1,2,5,"120 DIAS");
+const producto2 = new Producto(9992,"BEBIDAS",60002,"POMELO PASO DE LOS TOROS BT.500ML",1,2,5,"120 DIAS");
+const producto3 = new Producto(9993,"BEBIDAS",60003,"COCA COLA BT 600ML",1,2,5,"120 DIAS");
+const producto4 = new Producto(9994,"BEBIDAS",60004,"WHISKY JOHNNIE WALKER-ETIQUETA NEGRA 1L",1,2,5,"120 DIAS");
 
-console.log(producto1);
-console.log(producto2);
-console.log(producto3);
-console.log(producto4);
-console.log(producto5);
+const productos = [producto1,producto2,producto3,producto4];
+console.log(productos)
 
 
 
-*/
+//FUNCION PARA AGREGAR PRODUCTOS:
+function agregarProductos(){
+    let idProveedor = prompt("Ingrese el número de proveedor:");
+    let seccion = prompt("Ingrese sección:");
+    let id = parseInt(prompt("Ingrese el id del producto:"));
+    let nombreDeProducto = prompt("Ingrese el nombre del producto:");
+    let costoConIva = parseFloat(prompt("Ingrese el precio con iva que compramos la mercaderia:"));
+    let cantidad = parseInt(prompt("Ingrese la cantidad comprada:"));
 
+    productos.push(new Producto(idProveedor,seccion,id,nombreDeProducto,costoConIva,cantidad));
+}
+agregarProductos();
+console.log(productos);
+
+//ORDENAR EL LISTADO DE PRODUCTOS QUE TENGO EN LA LISTA
+for(const prod of productos){
+    prod.costoSinIva();
+    prod.precioVentaSinIva();
+    prod.precioVentaConIva();
+    prod.precioVentaConIvaConDescuento();
+    console.table(prod.seccion + " " + prod.idProveedor + " " + prod.plazoDePago + " " + prod.id + " " + prod.nombreDeProducto + " " + prod.costoSinIva + " " + prod.costoConIva+ " " + prod.precioVentaSinIva + " " + prod.precioVentaConIva + " " + prod.precioVentaConIvaConDescuento + " " + prod.cantidad);
+}
