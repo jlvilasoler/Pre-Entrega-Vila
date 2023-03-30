@@ -114,4 +114,4 @@ console.log(buscadorNombresProductos);
 
 //SOME, nos indica por nombre , si el articulo existe o no en la base de datos (nos da true o false): 
 const existeArticulo = productos.some((producto) => producto.nombreDeProducto == "WHISKY JOHNNIE WALKER-ETIQUETA NEGRA 1L");
-console.log(existeArticulo); // RESULTADO = TRUE 
+console.log(existeArticulo); // RESULTADO = TRUE.
