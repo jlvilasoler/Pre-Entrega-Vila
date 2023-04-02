@@ -47,7 +47,9 @@ console.log(productos)
 
 
 
-//FUNCION PARA AGREGAR PRODUCTOS:
+
+
+// 1 - FUNCIONALIDAD PARA AGREGAR PRODUCTOS COMPRADOS (INGRESO DE MERCADERIA):
 function agregarProductos(){
     let fechaCompra = prompt("Ingrese la fecha de compra: (formato dd-mm-yy)");
     let idProveedor = prompt("Ingrese el número de proveedor:");
@@ -62,7 +64,9 @@ function agregarProductos(){
 agregarProductos();
 console.log(productos);
 
-//ORDENAR EL LISTADO DE PRODUCTOS QUE TENGO EN LA LISTA
+
+
+// 2 - ORDENAR EL LISTADO DE PRODUCTOS QUE TENGO EN LA LISTA
 for(const prod of productos){
     prod.costoSinIva();
     prod.precioVentaSinIva();
@@ -75,6 +79,7 @@ for(const prod of productos){
     console.table(prod.fechaCompra + " " + prod.seccion + " " + prod.idProveedor + " " + prod.plazoDePago + " " + prod.id + " " + prod.nombreDeProducto + " " + prod.costoSinIva + " " + prod.costoConIva+ " " + prod.precioVentaSinIva + " " + prod.precioVentaConIva + " " + prod.cantidad + " " + prod.margen + " " + prod.gananciaConIva + " " + prod.gananciaSinIva + " " + prod.IvaCompras + " " + prod.IvaVentas);
 }
 
+// 3 - REDUCE:
 //REDUCE , nos dice el total de articulos que se compraron:
 const cantidadTotalArticulos = productos.reduce((sumador, Producto) => sumador + Producto.cantidad,0);
 console.log("A) LA SUMA DE TODOS LOS PRODUCTOS QUE SE COMPRARON: "+cantidadTotalArticulos);
@@ -91,6 +96,9 @@ console.log("C) TOTAL IVA COMPRAS (en pesos): "+TotalIvaCompras);
 const TotalIvaVentas = productos.reduce((sumador, Producto) => sumador + Producto.IvaVentas,0);
 console.log("D) TOTAL IVA VENTAS (en pesos): "+TotalIvaVentas);
 
+
+
+// 4 - FIND:
 //FIND , buscaremos un numero de ID DE ARTICULO determinado, se queda con el primero id que encuentra:
 let idArticuloEncontrado = productos.find((producto) => producto.id == "60004");  
 if(idArticuloEncontrado != undefined) {
@@ -99,6 +107,7 @@ if(idArticuloEncontrado != undefined) {
 }
 
 
+// 5 - MAP:
 //MAP, nos da el listado de articulos con sus precios de venta :
 const listaNombreArticuloYPrecio = productos.map((producto) => {
     return {
@@ -108,10 +117,14 @@ const listaNombreArticuloYPrecio = productos.map((producto) => {
 });
 console.log(listaNombreArticuloYPrecio);
 
+
+// 6 - FILTER:
 //FILTER, nos devuelve la busqueda de todos los articulos que son botellas "BT":
 const buscadorNombresProductos = productos.filter((producto) => producto.nombreDeProducto.includes("BT"));
 console.log(buscadorNombresProductos);
 
+
+// 7 - SOME:
 //SOME, nos indica por nombre , si el articulo existe o no en la base de datos (nos da true o false): 
 const existeArticulo = productos.some((producto) => producto.nombreDeProducto == "WHISKY JOHNNIE WALKER-ETIQUETA NEGRA 1L");
 console.log(existeArticulo); // RESULTADO = TRUE
